@@ -22,10 +22,10 @@ researchers and institutions. Globus enables you to transfer your
 data using just a web browser, or using their SSH interface at 
 cli.globusonline.org.
 
-This is a client library for the Globus Online Transfer API.
+This is a client library for the Globus CLI.
 
-For detailed documentation of the Transfer API, 
-see https://transfer.api.globusonline.org
+For detailed documentation of the API, 
+see http://dev.globus.org/cli/reference.
 
 =head1 SYNOPSIS
 
