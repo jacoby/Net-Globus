@@ -1,4 +1,4 @@
-package Net::Globus ;
+package Globus ;
 
 use feature qw{ state say } ;
 use strict ;
@@ -233,6 +233,8 @@ sub acl_remove {
 
 =head3 B<endpoint_remove>
 
+Functional things needing documentation
+
 =cut
 
 sub endpoint_add_shared {
@@ -245,8 +247,14 @@ sub endpoint_add_shared {
     }
 
 sub endpoint_list {
-    my ($self) = @_ ;
-    my $command = qq{endpoint-list} ;
+    my ( $self, $endpoint ) = @_ ;
+    my $command ;
+    if ($endpoint) {
+        $command = qq{endpoint-list $endpoint } ;
+        }
+    else {
+        $command = qq{endpoint-list} ;
+        }
     my $result
         = _globus_action( $command, $self->{username}, $self->{key_path} ) ;
     my @result = map { ( split m{\s}, $_ )[0] } split "\n", $result ;
