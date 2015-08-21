@@ -1,5 +1,4 @@
-package Globus ;
-
+package Net::Globus ;
 use feature qw{ state say } ;
 use strict ;
 use warnings ;
@@ -13,19 +12,29 @@ use Net::OpenSSH ;
 
 =head1 NAME
 
-Globus - Object-Oriented interface to Globus
+    Globus - Object-Oriented interface to Globus
 
 =head1 DESCRIPTION
 
-Globus is a tool that allows the sharing of scientific data between 
-researchers and institutions. Globus enables you to transfer your 
-data using just a web browser, or using their SSH interface at 
-cli.globusonline.org.
+    Globus is a tool that allows the sharing of scientific data between 
+    researchers and institutions. Globus enables you to transfer your 
+    data using just a web browser, or using their SSH interface at 
+    cli.globusonline.org.
 
-This is a client library for the Globus CLI.
+    This is a client library for the Globus CLI.
 
-For detailed documentation of the API, 
-see http://dev.globus.org/cli/reference.
+    For detailed documentation of the API, 
+    see http://dev.globus.org/cli/reference.
+
+=head1 CAVEATS
+
+    This code is a work in progress, focusing on my needs at the moment 
+    rather than covering all the capabilities of the Globus CLI. It is
+    therefore very stubtastic.
+
+    This module also relies very much on SSH, and thus the rules of 
+    private and public keys. Therefore, using it as a shared tool would
+    be ill-advised if not impossible.
 
 =head1 SYNOPSIS
 
@@ -39,8 +48,8 @@ see http://dev.globus.org/cli/reference.
 
 =head3 B<new>
 
-Creates a new Globus object. Takes two options: 
-the username and path to the SSH key you use to connect to Globus.
+    Creates a new Globus object. Takes two options: 
+    the username and path to the SSH key you use to connect to Globus.
 
 =head3 B<set_username>
 
@@ -50,8 +59,8 @@ the username and path to the SSH key you use to connect to Globus.
 
 =head3 B<get_key_path>
 
-These commands return and change the username and keypath you use to 
-connect to Globus.
+    These commands return and change the username and keypath you use to 
+    connect to Globus.
 
 =cut
 
@@ -233,7 +242,13 @@ sub acl_remove {
 
 =head3 B<endpoint_remove>
 
-Functional things needing documentation
+endpoint_add_shared() handles the specific case of creating an endpoint 
+from an existing endpoint, not the general case.  It takes the endpoint
+where you're sharing from, the path you're sharing, and the endpoint 
+you're creating. If you are user 'user' and creating the endpoint 'test',
+the command takes 'test', not 'user#test'.
+
+endpoint_remove and endpoint_list, however, take a full endpoint name, like 'user#test'.
 
 =cut
 
